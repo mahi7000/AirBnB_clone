@@ -6,3 +6,9 @@ footer {
 	position: fixed;
 	bottom: 0;
 }
+
+
+p {
+	margin: 0;
+	line-height: 60px;
+}
