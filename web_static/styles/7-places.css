@@ -1,11 +1,13 @@
-.places {
+.places section {
     margin-top: 20px;
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
 }
 
 .places h1 {
     font-size: 30px;
-    margin: 0;
+    margin: 20px;
 }
 
 .places article {

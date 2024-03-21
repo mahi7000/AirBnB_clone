@@ -33,7 +33,6 @@
 	height: 100%;
 	width: 25%;
 	border-right: #DDDDDD 1px solid;
-	text-align: center;
 	justify-self: left;
 }
 
@@ -41,12 +40,12 @@
 	display: inline;
 	height: 100%;
 	width: 25%;
-	text-align: center;
 }
 
 .search-title {
 	font-weight: 600;
 	margin: 0;
+	margin-left: 30px;
 	margin-top: 20px;
 }
 
@@ -54,6 +53,7 @@
 	font-weight: 400;
 	font-size: 14px;
 	margin: 0;
+	margin-left: 30px;
 }
 
 ul {
@@ -68,7 +68,12 @@ ul {
 	padding-bottom: 20px;
 	background-color: #FAFAFA;
 	border: 1px solid #DDDDDD;
-	border-radius: 4px; 
+	border-radius: 4px;
+	position: relative;
+}
+
+li {
+	margin-left: 30px;
 }
 
 .locations:hover .popover {
