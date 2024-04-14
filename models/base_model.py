@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ contains a class BaseModel that defines all common """
+from models import storage
 from datetime import datetime
 import uuid
 
@@ -26,6 +27,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         obj_dict = self.__dict__.copy()
