@@ -44,6 +44,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(created_at, self.model.created_at)
         self.assertEqual(updated_at, self.model.updated_at)
 
+    def test_str(self):
+        m = BaseModel()
+        m.id = "123"
+        m.created_at = "2022-01-01 12:00:00"
+        m.updated_at = "2022-01-02 12:00:00"
+
+        result = str(m)
+        expected = "[BaseModel] (123) {'id': '123', \
+'created_at': '2022-01-01 12:00:00', 'updated_at': '2022-01-02 12:00:00'}"
+        self.assertEqual(result, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
