@@ -55,6 +55,19 @@ class TestBaseModel(unittest.TestCase):
 'created_at': '2022-01-01 12:00:00', 'updated_at': '2022-01-02 12:00:00'}"
         self.assertEqual(result, expected)
 
+    def test_kwargs(self):
+        m = BaseModel()
+        m.id = "123"
+        m.created_at = "2022-01-01 12:00:00"
+        m.updated_at = "2022-01-02 12:00:00"
+        m.name = "My_First_Model"
+        my_model_json = m.to_dict()
+        my_new_model = BaseModel(**my_model_json)
+        expected = "[BaseModel] (123) {'id': '123', \
+'created_at': '2022-01-01 12:00:00', 'updated_at': '2022-01-02 12:00:00', \
+'name': 'My_First_Model'}"
+        result = str(my_new_model)
+        self.assertEqual(result, expected)
 
 if __name__ == '__main__':
     unittest.main()
