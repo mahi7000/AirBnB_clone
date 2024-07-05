@@ -30,14 +30,18 @@ class FileStorage:
                 file.write("\n")
 
     def reload(self):
+        """Deserialize JSON to __objects"""
         try:
             with open(self.__file_path, 'r') as file:
-                data = json.load(file)
-
-                for key, value in data.items():
-                    cls, obj_id = key.split('.')
-                    obj = eval(cls)(**value)
-                    self.__objects[key] = obj
+                for line in file:
+                    data = json.load(file)
+                    from models.base_model
+                    import BaseModel
+                    classes = {'BaseModel': BaseModel}
+                    for key, value in data.items():
+                        cls, obj_id = key.split('.')
+                        obj = classes[cls](**value)
+                        self.__objects[key] = obj
 
         except FileNotFoundError:
             pass
