@@ -29,7 +29,7 @@ class FileStorage:
         """Deserialize the JSON file to instances """
         try:
             from models.base_model import BaseModel
-            classes = {'BaseModel', BaseModel}
+            classes = {'BaseModel': BaseModel}
 
             with open(self.__file_path, 'r') as file:
                 content = file.read()
