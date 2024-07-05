@@ -32,7 +32,7 @@ class FileStorage:
             classes = {'BaseModel': BaseModel}
 
             with open(self.__file_path, 'r') as file:
-                content = file.read()
+                content = file.read().strip()
                 if content:
                     serialized = json.loads(content)
                     for key, value in serialized.items():
