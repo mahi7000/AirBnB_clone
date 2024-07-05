@@ -35,8 +35,7 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 for line in file:
                     data = json.load(file)
-                    from models.base_model
-                    import BaseModel
+                    from models.base_model import BaseModel
                     classes = {'BaseModel': BaseModel}
                     for key, value in data.items():
                         cls, obj_id = key.split('.')
