@@ -32,7 +32,7 @@ class FileStorage:
     def reload(self):
         try:
             with open(self.__file_path, 'r') as file:
-                for line in f:
+                for line in file:
                     data = json.load(line)
 
                     for key, value in data.items():
