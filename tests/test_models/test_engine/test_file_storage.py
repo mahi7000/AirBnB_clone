@@ -11,6 +11,18 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """ Create new FileStorage instance """
         self.fstorage = FileStorage()
+    def test_file_path(self):
+        """Test file path is the same"""
+        path = self.fstorage._FileStorage__file_path
+        self.assertEqual(path, "file.json")
+
+    def test_all(self):
+        obj = BaseModel()
+        self.fstorage.new(obj)
+        all_objs = self.fstorage.all()
+        self.assertIsInstance(all_objs, dict)
+        self.assertIn(obj.__class__.__name__ + "." + obj.id,
+                all_objs)
 
     def test_new(self):
         """Test adding new instance to basemodel"""
@@ -22,15 +34,14 @@ class TestFileStorage(unittest.TestCase):
     def test_save_reload(self):
         """Test save and reload"""
         obj1 = BaseModel()
-        obj2 = BaseModel()
         self.fstorage.new(obj1)
-        self.fstorage.new(obj2)
         self.fstorage.save()
-        self.fstorage.reload()
-        self.assertIn('BaseModel.{}'.format(obj1.id),
-                      self.fstorage._FileStorage__objects)
-        self.assertIn('BaseModel.{}'.format(obj2.id),
-                      self.fstorage._FileStorage__objects)
+
+        new_storage = FileStorage()
+        new_storage.reload()
+
+        all_objs = new_storage.all()
+        self.assertIn(obj1.__class__.__name__ + '.' + obj1.id, all_objs)
 
 
 if __name__ == '__main__':
