@@ -22,13 +22,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates a new instance of BaseModel"""
-        if line is None or len(line.strip()) == 0:
+        cls = (line.split()[0]).strip()
+        if line is None or len(cls) == 0:
             print("** class name missing **")
-        elif line.split()[0] != "BaseModel":
+        elif cls != "BaseModel":
             print("** class doesn't exist **")
         else:
             from models.base_model import BaseModel
-            new = BaseModel()
+            new = eval(cls)()
             new.save()
             print(new.id)
 
