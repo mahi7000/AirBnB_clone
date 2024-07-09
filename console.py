@@ -2,6 +2,7 @@
 """ contains the entry point of the comman interpreter """
 import cmd
 import json
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -21,9 +22,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates a new instance of BaseModel"""
-        if line is None or len(line.strip) == 0:
+        if line is None or len(line.strip()) == 0:
             print("** class name missing **")
-        elif line[0] != "BaseModel":
+        elif line.split()[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
             from models.base_model import BaseModel
