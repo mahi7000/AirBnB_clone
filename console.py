@@ -18,6 +18,21 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         pass
 
+    def create(self):
+        """Creates a new instance of BaseModel"""
+
+    def show(self):
+        """Prints string repr of an instance"""
+
+    def destroy(self):
+        """Deletes an instance based on the class name"""
+
+    def all(self):
+        """Prints str repr of all instances"""
+
+    def update(self):
+        """Updates an instance basn class name and id"""
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
