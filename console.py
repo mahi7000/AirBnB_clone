@@ -2,7 +2,7 @@
 """ contains the entry point of the comman interpreter """
 import cmd
 import json
-from models import storage
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -35,12 +35,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints string repr of an instance"""
-        class_name, ids  = line.split()
-        if (class_name is None or len(class_name.strip()) == 0):
+        classes = ["BaseModel"]
+        if (line is None or len(line.strip()) == 0):
             print("** class name missing **")
-        elif (ids is None or len(ids.strip()) == 0):
-            print("** instance id missing **")
-
+        elif (line.split()[0] not in classes):
+            print("** class doesn't exist **")
+        else:
+            try:
+                class_name, ids = line.split()
+                inst = models.storage.all()[class_name + '.' + ids]
+                print(inst)
+            except ValueError:
+                print("** instance id missing **")
+            except KeyError:
+                print("** no instance found **")
 
     def destroy(self):
         """Deletes an instance based on the class name"""
