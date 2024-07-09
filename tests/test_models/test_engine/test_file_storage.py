@@ -11,6 +11,7 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """ Create new FileStorage instance """
         self.fstorage = FileStorage()
+
     def test_file_path(self):
         """Test file path is the same"""
         path = self.fstorage._FileStorage__file_path
