@@ -13,35 +13,35 @@ class FileStorage:
 
     def all(self):
         """Returns dictionary __objects"""
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """sets in __objects the obj"""
         cls = obj.__class__.__name__
         key = "{}.{}".format(cls, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """serialize __objects to JSON"""
+        objs = FileStorage.__objects
         serialized = {}
-        for key, value in self.__objects.items():
-            serialized[key] = value.to_dict()
-        with open(self.__file_path, 'w') as file:
-            json.dump({key: value.to_dict for key,
-                       value in self.__objects.items()}, file)
+
+        for obj in objs.keys():
+            serialized[obj] = objs[obj].to_dict()
+
+        with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
+            json.dump(serialized, file)
 
     def reload(self):
         """Deserialize the JSON file to instances """
         try:
-            with open(self.__file_path, 'r') as file:
-                self.__objects = {key: self.get_class(
-                        key.split('.')[0])(**value)
-                        for key, value in json.load(file).items()}
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
+                deserialized = json.load(file)
+                for key, value in deserialized.items():
+                    cls_name, obj_id = key.split('.')
+                    cls = eval(cls_name)
+                    new = cls(**value)
+                    FileStorage.__objects[key] = instance
+                
         except FileNotFoundError:
             pass
-
-    def get_class(self, name):
-        """ returns a class from models module using its name"""
-        sub_module = re.sub('(?!^)([A-Z]+)', r'_\1', name).lower()
-        module = importlib.import_module(f"models.{sub_module}")
-        return getattr(module, name)

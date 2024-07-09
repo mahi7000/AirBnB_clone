@@ -32,8 +32,14 @@ class HBNBCommand(cmd.Cmd):
             new.save()
             print(new.id)
 
-    def show(self):
+    def do_show(self, line):
         """Prints string repr of an instance"""
+        class_name, ids  = line.split()
+        if (class_name is None or len(class_name.strip()) == 0):
+            print("** class name missing **")
+        elif (ids is None or len(ids.strip()) == 0):
+            print("** instance id missing **")
+
 
     def destroy(self):
         """Deletes an instance based on the class name"""

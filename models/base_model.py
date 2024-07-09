@@ -12,20 +12,20 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Creates public instance attributes"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
-
         if kwargs:
             for key, value in kwargs.items():
-                if key == '__class__':
+                if key == "__class__":
                     continue
-                elif key in ["created_at", "updated_at"]:
-                    setattr(self, key, datetime.fromisoformat(value))
+                elif key == "created_at" or key == "updated_at":
+                    format = "%Y-%m-%dT%H:%M:%S.%f"
+                    setattr(self, key, datetime.strptime(value, format))
                 else:
                     setattr(self, key, value)
         else:
-            storage.new(self)
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+        storage.new(self)
 
     def __str__(self):
         """Prints string representaion of object"""
