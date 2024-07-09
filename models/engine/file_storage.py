@@ -47,6 +47,5 @@ class FileStorage:
                     cls = eval(cls_name)
                     new = cls(**value)
                     FileStorage.__objects[key] = new
-                
         except FileNotFoundError:
             pass

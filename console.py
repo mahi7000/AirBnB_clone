@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             try:
-                obj = storage.all()[args[0] + '.' +args[1]]
+                obj = storage.all()[args[0] + '.' + args[1]]
                 setattr(obj, args[2], args[3].strip('"'))
                 obj.save()
             except KeyError:

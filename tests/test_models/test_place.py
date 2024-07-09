@@ -13,7 +13,7 @@ class TestPlace(unittest.TestCase):
     def testId(self):
         self.assertEqual(self.p.city_id, "")
         self.assertEqual(self.p.user_id, "")
-    
+
     def testNameDescription(self):
         self.assertEqual(self.p.name, "")
         self.assertEqual(self.p.description, "")

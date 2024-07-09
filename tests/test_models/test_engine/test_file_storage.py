@@ -23,7 +23,7 @@ class TestFileStorage(unittest.TestCase):
         all_objs = self.fstorage.all()
         self.assertIsInstance(all_objs, dict)
         self.assertIn(obj.__class__.__name__ + "." + obj.id,
-                all_objs)
+                      all_objs)
 
     def test_new(self):
         """Test adding new instance to basemodel"""
