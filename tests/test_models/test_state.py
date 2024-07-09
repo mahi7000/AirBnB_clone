@@ -10,5 +10,5 @@ class TestState(unittest.TestCase):
     def setUp(self):
         s = State()
 
-    def TestName(self):
+    def testName(self):
         self.assertEqual(s.name, "")

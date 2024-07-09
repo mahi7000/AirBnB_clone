@@ -10,23 +10,23 @@ class TestPlace(unittest.TestCase):
     def setUp(self):
         p = Place()
 
-    def TestId(self):
+    def testId(self):
         self.assertEqual(p.city_id, "")
         self.assertEqual(p.user_id, "")
     
-    def TestNameDescription(self):
+    def testNameDescription(self):
         self.assertEqual(p.name, "")
         self.assertEqual(p.description, "")
 
-    def TestNumber(self):
+    def testNumber(self):
         self.assertEqual(p.number_rooms, 0)
         self.assertEqual(p.number_bathrooms, 0)
         self.assertEqual(p.max_guest, 0)
         self.assertEqual(p.price_by_night, 0)
 
-    def TestLatitudeLongitude(self):
+    def testLatitudeLongitude(self):
         self.assertEqual(p.latitude, 0.0)
         self.assertEqual(p.longitude, 0.0)
 
-    def TestAmenityIds(self):
+    def testAmenityIds(self):
         self.assertEqual(p.amenity_ids, [])

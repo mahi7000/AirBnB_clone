@@ -10,5 +10,5 @@ class TestAmenity(unittest.TestCase):
     def setUp(self):
         a = Amenity()
 
-    def TestName(self):
+    def testName(self):
         self.assertEqual(a.name, "")

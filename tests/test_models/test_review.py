@@ -10,7 +10,7 @@ class TestReview(unittest.TestCase):
     def setUp(self):
         r = Review()
 
-    def TestAttributes(self):
+    def testAttributes(self):
         self.assertEqual(r.place_id, "")
         self.assertEqual(r.user_id, "")
         self.assertEqual(r.text, "")
