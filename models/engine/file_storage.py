@@ -2,8 +2,7 @@
 """Serializes instances to JSON file and back"""
 
 import json
-import re
-import importlib
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -41,7 +40,7 @@ class FileStorage:
                     cls_name, obj_id = key.split('.')
                     cls = eval(cls_name)
                     new = cls(**value)
-                    FileStorage.__objects[key] = instance
+                    FileStorage.__objects[key] = new
                 
         except FileNotFoundError:
             pass
