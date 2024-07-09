@@ -79,8 +79,21 @@ class HBNBCommand(cmd.Cmd):
             except KeyError:
                 print("** no instance found **")
 
-    def all(self):
+    def do_all(self, line):
         """Prints str repr of all instances"""
+        if (line is None or len(line.strip()) == 0):
+            for key, value in storage.all().items():
+                class_name, ids = key.split('.')
+                inst = storage.all()[class_name + '.' + ids]
+                print(inst)
+        elif line.strip() not in classes:
+            print("** class doesn't exist **")
+        else:
+            for key, value in storage.all().items():
+                class_name, ids = key.split('.')
+                if class_name == line.strip():
+                    inst = storage.all()[class_name + '.' + ids]
+                    print(inst)
 
     def update(self):
         """Updates an instance basn class name and id"""
