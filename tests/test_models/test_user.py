@@ -9,16 +9,16 @@ class TestUser(unittest.TestCase):
     """Test user"""
     def setUp(self):
         """Make a user object"""
-        first = User()
+        self.first = User()
 
     def test_email(self):
-        self.assertEqual(first.email, "")
+        self.assertEqual(self.first.email, "")
 
     def test_password(self):
-        self.assertEqual(first.password, "")
+        self.assertEqual(self.first.password, "")
 
     def test_first_name(self):
-        self.assertEqual(first.first_name, "")
+        self.assertEqual(self.first.first_name, "")
 
     def test_last_name(self):
-        self.assertEqual(first.last_name, "")
+        self.assertEqual(self.first.last_name, "")

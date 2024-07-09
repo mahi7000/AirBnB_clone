@@ -8,9 +8,9 @@ from models.review import Review
 class TestReview(unittest.TestCase):
     """Test the class Review"""
     def setUp(self):
-        r = Review()
+        self.r = Review()
 
     def testAttributes(self):
-        self.assertEqual(r.place_id, "")
-        self.assertEqual(r.user_id, "")
-        self.assertEqual(r.text, "")
+        self.assertEqual(self.r.place_id, "")
+        self.assertEqual(self.r.user_id, "")
+        self.assertEqual(self.r.text, "")

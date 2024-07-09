@@ -8,10 +8,10 @@ from models.city import City
 class TestCity(unittest.TestCase):
     """class to Test City"""
     def setUp(self):
-        c = City()
+        self.c = City()
 
     def testStateId(self):
-        self.assertEqual(c.state_id, "")
+        self.assertEqual(self.c.state_id, "")
 
     def testName(self):
-        self.assertEqual(c.name, "")
+        self.assertEqual(self.c.name, "")

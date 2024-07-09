@@ -8,7 +8,7 @@ from models.amenity import Amenity
 class TestAmenity(unittest.TestCase):
     """Test Amenities"""
     def setUp(self):
-        a = Amenity()
+        self.a = Amenity()
 
     def testName(self):
-        self.assertEqual(a.name, "")
+        self.assertEqual(self.a.name, "")
