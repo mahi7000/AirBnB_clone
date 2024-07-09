@@ -1,19 +1,9 @@
 #!/usr/bin/python3
-"""Amenities of room"""
+"""Amenities f a room"""
 
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """Amenities"""
-    city_id = ""
-    user_id = ""
+    """class Amenties w attribute name"""
     name = ""
-    description = ""
-    number_rooms = 0
-    number_bathrooms = 0
-    max_guest = 0
-    price_by_night = 0
-    latitude = 0.0
-    longitude = 0.0
-    amentiy_ids = []
