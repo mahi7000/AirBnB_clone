@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ contains the entry point of the comman interpreter """
 import cmd
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,8 +19,17 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         pass
 
-    def create(self):
+    def do_create(self, line):
         """Creates a new instance of BaseModel"""
+        if line is None or len(line.strip) == 0:
+            print("** class name missing **")
+        elif line[0] != "BaseModel":
+            print("** class doesn't exist **")
+        else:
+            from models.base_model import BaseModel
+            new = BaseModel()
+            new.save()
+            print(new.id)
 
     def show(self):
         """Prints string repr of an instance"""
