@@ -2,7 +2,22 @@
 """ contains the entry point of the comman interpreter """
 import cmd
 import json
-import models
+from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+classes = ["BaseModel",
+           "User",
+           "State",
+           "City",
+           "Amenity",
+           "Place",
+           "Review"]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -24,10 +39,9 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel"""
         if line is None or len(line.strip()) == 0:
             print("** class name missing **")
-        elif line.split()[0].strip() != "BaseModel":
+        elif line.split()[0].strip() not in classes:
             print("** class doesn't exist **")
         else:
-            from models.base_model import BaseModel
             cls = (line.split()[0]).strip()
             new = eval(cls)()
             new.save()
@@ -35,7 +49,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints string repr of an instance"""
-        classes = ["BaseModel"]
         if (line is None or len(line.strip()) == 0):
             print("** class name missing **")
         elif (line.split()[0] not in classes):
@@ -43,15 +56,28 @@ class HBNBCommand(cmd.Cmd):
         else:
             try:
                 class_name, ids = line.split()
-                inst = models.storage.all()[class_name + '.' + ids]
+                inst = storage.all()[class_name + '.' + ids]
                 print(inst)
             except ValueError:
                 print("** instance id missing **")
             except KeyError:
                 print("** no instance found **")
 
-    def destroy(self):
+    def do_destroy(self, line):
         """Deletes an instance based on the class name"""
+        if (line is None or len(line.strip()) == 0):
+            print("** class name missing **")
+        elif (line.split()[0] not in classes):
+            print("** class doesn't exist **")
+        else:
+            try:
+                class_name, ids = line.split()
+                del storage.all()[class_name + '.' + ids]
+                storage.save()
+            except ValueError:
+                print("** instance id missing **")
+            except KeyError:
+                print("** no instance found **")
 
     def all(self):
         """Prints str repr of all instances"""
